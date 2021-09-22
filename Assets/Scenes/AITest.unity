@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 655883517}
   - component: {fileID: 655883516}
   - component: {fileID: 655883515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 823827334}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1262,7 +1262,7 @@ GameObject:
   - component: {fileID: 2030411733}
   - component: {fileID: 2030411732}
   - component: {fileID: 2030411731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 2089020182}
   - component: {fileID: 2089020181}
   - component: {fileID: 2089020180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: First Person Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
