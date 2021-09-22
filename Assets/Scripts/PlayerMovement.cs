@@ -7,21 +7,35 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
 
-    //public Transform groundCheck;
-    //public float groundDistance = 0.4f;
-    //public LayerMask groundMask;
+    private AudioSource audioSource;
+
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
 
     Vector3 velocity;
-    //bool isGrounded;
+    bool isGrounded;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
-        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        /* if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
-        } */
+        } 
+
+        if (isGrounded == true && controller.velocity.magnitude > 2f && audioSource.isPlaying == false)
+        {
+            audioSource.volume = Random.Range(0.8f, 1);
+            audioSource.pitch = Random.Range(0.8f, 1.1f);
+            audioSource.Play();
+        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
