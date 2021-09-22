@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(controller.velocity.magnitude);
         if (controller.velocity.magnitude > 0f && audioSource.isPlaying == false)
         {
-            audioSource.volume = Random.Range(0.8f, 1);
+            audioSource.volume = Random.Range(0.8f, 1); //audio pitch randomiser
             audioSource.pitch = Random.Range(0.8f, 1.1f);
             audioSource.Play();
         }
