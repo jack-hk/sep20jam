@@ -34,8 +34,8 @@ public class EnemyAI : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
 
     }
 
@@ -73,11 +73,27 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-
+        agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
 
+        if(!alreadyAttacked)
+        {
+            //Attack code
+            Debug.Log("Attacked!");
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
 }
