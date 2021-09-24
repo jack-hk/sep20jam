@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public LayerMask whatIsEnemy;
+    public float attackRange;
+    public Transform attackPoint;
+
     //public Transform groundCheck;
     //public float groundDistance = 0.4f;
     //public LayerMask groundMask;
@@ -30,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         } */
         //Debug.Log(controller.velocity.magnitude);
+
+
+
+        //Movement
         if (controller.velocity.magnitude > 0f && audioSource.isPlaying == false)
         {
             audioSource.volume = Random.Range(0.8f, 1); //audio pitch randomiser
@@ -47,5 +55,33 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        //Attack
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            
+            Attack(1);
+        }
+    }
+
+    private void Attack(int damage)
+    {
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, whatIsEnemy);
+
+        foreach(Collider enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name + " | Damage: " + damage);
+            enemy.GetComponent<EnemyAI>().TakeDamage(damage);
+        }
+
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

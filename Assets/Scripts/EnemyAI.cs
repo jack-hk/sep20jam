@@ -24,11 +24,6 @@ public class EnemyAI : MonoBehaviour
 	
 	//Health
 	public int health;
-	
-	void Start()
-	{
-		health = 3;
-	}
 
     private void Awake()
     {
@@ -43,7 +38,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        //if (playerInAttackRange && playerInSightRange) AttackPlayer();
 
     }
 
@@ -92,7 +87,7 @@ public class EnemyAI : MonoBehaviour
         if(!alreadyAttacked)
         {
             //Attack code
-			Debug.Log("Attacked!"!);
+			Debug.Log("Enemy Attacked!"!);
 			//player.GetComponent<Health>.takeDamage(3);
 
             alreadyAttacked = true;
@@ -106,13 +101,13 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 	
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        health = health - damage;
+        health -= damage;
 
         // update health bar GUI here
 
-        if (health <= 0) // death
+        if (health <= 0)
         {
             Debug.Log("Killed!");
 			// die
